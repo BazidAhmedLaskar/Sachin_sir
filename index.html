@@ -23,9 +23,8 @@
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "All India JNV",
-    "alternateName": "JNV",
-    "url": "https://allindiajnv.live"
+    "name": "Sachin Sir Study Notes",
+    "url": "https://sachinsir.netlify.app/"
   }
   </script>
  
@@ -102,6 +101,10 @@
   }
   </script>
 
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/favicon.png" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3441072313950391" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
@@ -141,7 +144,7 @@
       border-bottom: 1px solid var(--border);
       padding: 0 5%;
       display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
+      min-height: 60px; height: auto; padding-top: 12px; padding-bottom: 12px; gap: 12px; flex-wrap: wrap;
     }
     .nav-brand {
       font-family: var(--serif);
@@ -150,7 +153,7 @@
       text-decoration: none;
       font-weight: 700;
     }
-    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: .6rem 1.1rem; list-style: none; }
     .nav-links a {
       color: var(--muted); font-size: 0.82rem; text-decoration: none;
       letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500;
@@ -598,20 +601,44 @@
     footer strong { color: var(--accent); }
 
     /* ── SCROLL REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal { opacity: 1; transform: none; }
     .reveal.visible { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .hero-avatar { display: none; }
+      .hero { min-height: 0; flex-direction: column; align-items: flex-start; gap: 30px; }
+      .hero-avatar { display: flex; position: relative; right: auto; bottom: auto; width: 100%; height: auto; justify-content: flex-start; }
+      .avatar-placeholder { width: min(100%, 360px); height: auto; border-radius: 16px; padding: 16px; }
       .bio-grid { grid-template-columns: 1fr; }
       .compare-table { font-size: 0.8rem; }
       .compare-table th, .compare-table td { padding: 10px 12px; }
-      nav .nav-links { display: none; }
+      nav { position: relative; height: auto; min-height: 60px; flex-wrap: wrap; padding-top: 12px; padding-bottom: 12px; gap: 10px; }
+      nav .nav-links { display: flex; flex-wrap: wrap; gap: 10px 15px; }
     }
+    .skip-link { position: absolute; top: 8px; left: 8px; z-index: 200; padding: 10px; background: #fff; color: #111; transform: translateY(-160%); }
+    .skip-link:focus { transform: none; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent2); outline-offset: 3px; }
+    .avatar-placeholder { padding: 18px; height: auto; min-height: 330px; }
+    .hero-photo { width: 100%; height: auto; display: block; border-radius: 8px; }
+    .hero-photo-credit { font-size: .72rem; text-align: center; color: #bfc5d4; }
+    .hero-photo-credit a { color: var(--accent2); }
+    .profile-note { color: #c1c7d5; border-left: 3px solid var(--accent); background: var(--card); padding: 14px 18px; margin: 0 0 28px; max-width: 820px; }
+    .guide-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px; }
+    .guide-links a { display: flex; flex-direction: column; gap: 10px; padding: 24px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); color: var(--text); text-decoration: none; }
+    .guide-links a:hover { border-color: var(--accent); }
+    .guide-links strong { font-family: var(--serif); font-size: 1.2rem; }
+    .guide-links span { color: var(--accent2); font-size: .9rem; }
+    .guide-cta { display: inline-block; margin-top: 24px; color: var(--accent2); }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin-top: 18px; }
+    .footer-links a { color: #c5cad8; }
+    @media (min-width: 769px) and (max-width: 1100px) { .hero-content { max-width: calc(100% - 340px); } }
+    @media (max-width: 768px) { .avatar-placeholder { min-height: 0; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hero-badge::before { animation: none; } }
   </style>
+  <noscript><style>.faq-a { max-height: none; }</style></noscript>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <!-- NAV -->
 <nav>
@@ -622,10 +649,15 @@
     <li><a href="#batches">Batches</a></li>
     <li><a href="#pedagogy">Teaching</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="/study-guides.html">Study guides</a></li>
+    <li><a href="/study-toolkit.html">Toolkit</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
+<main id="main-content">
 <header class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
@@ -646,6 +678,8 @@
 
   <div class="hero-avatar">
     <div class="avatar-placeholder">
+      <a href="https://www.youtube.com/watch?v=UCdxT4d8k5c"><img class="hero-photo" src="https://i.ytimg.com/vi/UCdxT4d8k5c/hqdefault.jpg" width="480" height="360" alt="Sachin Jakhar in a Basic Maths lecture thumbnail" /></a>
+      <div class="hero-photo-credit">Lecture thumbnail on <a href="https://www.youtube.com/watch?v=UCdxT4d8k5c">YouTube</a></div>
       <div class="avatar-icon">🎓</div>
       <div class="avatar-name">Sachin Jakhar</div>
       <div class="avatar-role">JEE Maths · Physics Wallah</div>
@@ -663,6 +697,7 @@
     <p class="section-desc">Everything you need to know about Sachin Jakhar — his background, personal life, assets, and the story behind the "Village IITian" persona.</p>
   </div>
 
+  <p class="profile-note">This independent profile preserves the original site content. Some biographical details have conflicting reports and should be checked against reliable primary sources; batch information can also change.</p>
   <div class="bio-grid">
     <div class="bio-text reveal">
       <p>
@@ -884,48 +919,65 @@
 
   <div class="faq-list reveal">
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">What is Sachin Jakhar Sir's full name? <span class="faq-chevron">▼</span></button>
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What is Sachin Jakhar Sir's full name? <span class="faq-chevron">▼</span></button>
       <div class="faq-a"><div class="faq-a-inner">His full name is <strong>Sachin Jakhar</strong>. On the Physics Wallah platform he is universally addressed as "Sachin Sir." Note: There is also a "Sachin Bhagwan Adekar" at PW's Banking Wallah division — a completely different person who teaches Logical Reasoning for banking exams.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">What is Sachin Jakhar's AIR in IIT entrance? <span class="faq-chevron">▼</span></button>
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What is Sachin Jakhar's AIR in IIT entrance? <span class="faq-chevron">▼</span></button>
       <div class="faq-a"><div class="faq-a-inner">Sachin Jakhar secured an <strong>All India Rank (AIR) of 1000</strong> in the IIT entrance examination, which earned him admission into the IIT system where he later completed his MSc from IIT Delhi.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">What degree does Sachin Jakhar hold from IIT Delhi? <span class="faq-chevron">▼</span></button>
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What degree does Sachin Jakhar hold from IIT Delhi? <span class="faq-chevron">▼</span></button>
       <div class="faq-a"><div class="faq-a-inner">Sachin Jakhar holds an <strong>MSc (Master of Science) in Mathematics from IIT Delhi</strong>. During his time there, he was a Departmental Representative and conducted research in <strong>Algebraic Graph Theory and Combinatorics</strong> under Bhawani Panda's Lab.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Which batches does Sachin Sir teach in Physics Wallah? <span class="faq-chevron">▼</span></button>
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Which batches does Sachin Sir teach in Physics Wallah? <span class="faq-chevron">▼</span></button>
       <div class="faq-a"><div class="faq-a-inner">Sachin Jakhar is the primary Mathematics instructor for three flagship PW batches: <strong>Arjuna JEE</strong> (Class 11), <strong>Lakshya JEE</strong> (Class 12), and <strong>Prayas JEE</strong> (Dropper students). The Arjuna batch alone contains approximately 197 lectures.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Is Sachin Jakhar Sir good for JEE Advanced? <span class="faq-chevron">▼</span></button>
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Is Sachin Jakhar Sir good for JEE Advanced? <span class="faq-chevron">▼</span></button>
       <div class="faq-a"><div class="faq-a-inner">Yes. His IIT Delhi research background in advanced mathematics, combined with his exhaustive illustration-based teaching, makes him highly suitable for JEE Advanced level Mathematics. He is particularly renowned for making difficult chapters like <strong>Trigonometry, Complex Numbers, and Calculus</strong> accessible.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">What is the "Village IITian" story of Sachin Sir? <span class="faq-chevron">▼</span></button>
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What is the "Village IITian" story of Sachin Sir? <span class="faq-chevron">▼</span></button>
       <div class="faq-a"><div class="faq-a-inner">Sachin Jakhar grew up in a rural background in India. Despite limited resources compared to students from metros, he cracked the IIT entrance examination with AIR 1000 and went on to complete his MSc from IIT Delhi. His journey from village life to IIT is branded as the "Village IITian" identity — a deeply relatable story for millions of JEE aspirants from small towns and villages.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">How many years of teaching experience does Sachin Jakhar have? <span class="faq-chevron">▼</span></button>
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">How many years of teaching experience does Sachin Jakhar have? <span class="faq-chevron">▼</span></button>
       <div class="faq-a"><div class="faq-a-inner">Sachin Jakhar has over <strong>13 years of experience</strong> in JEE Mathematics coaching. He began his teaching career in the Kota coaching infrastructure and later transitioned to Physics Wallah during its formative growth phase.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">What is Sachin Jakhar's salary or net worth? <span class="faq-chevron">▼</span></button>
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What is Sachin Jakhar's salary or net worth? <span class="faq-chevron">▼</span></button>
       <div class="faq-a"><div class="faq-a-inner">Sachin Jakhar's salary and net worth are <strong>not publicly available</strong>. While there is significant student and public interest in this figure, no official or verified numbers have been disclosed. He is known to own a Land Rover Defender, suggesting a comfortable lifestyle, but specific income figures remain private.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">How to manage backlog in Sachin Sir's math batches? <span class="faq-chevron">▼</span></button>
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">How to manage backlog in Sachin Sir's math batches? <span class="faq-chevron">▼</span></button>
       <div class="faq-a"><div class="faq-a-inner">Due to the high volume of content (up to 197 lectures per batch), backlog management is a common concern. Recommended approach: watch recordings at 1.25–1.5x speed for chapters you're stronger in, prioritize DPP completion even if you're behind on lectures, and focus on current live sessions to avoid compounding the backlog further.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">What is Sachin Sir's official YouTube channel? <span class="faq-chevron">▼</span></button>
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What is Sachin Sir's official YouTube channel? <span class="faq-chevron">▼</span></button>
       <div class="faq-a"><div class="faq-a-inner">Sachin Jakhar manages his personal professional channel at <strong>@sachinjakharsir</strong> on YouTube with 4,000+ subscribers. He also regularly contributes to the official <strong>JEE Wallah</strong> channel by Physics Wallah, where he delivers "one-shot" revision videos and roadmap sessions.</div></div>
     </div>
   </div>
 </section>
 
+<hr class="divider" />
+
+<!-- STUDY GUIDES -->
+<section id="study-guides">
+  <div class="section-label">Keep learning</div>
+  <h2 class="section-title">Practical JEE maths study guides</h2>
+  <p class="section-desc">Build a sustainable routine, approach unfamiliar questions and make the most of revision.</p>
+  <div class="guide-links">
+    <a href="/jee-maths-study-plan.html"><strong>Build your study plan</strong><span>Set weekly goals and manage your backlog →</span></a>
+    <a href="/jee-maths-problem-solving.html"><strong>Practise problem-solving</strong><span>A step-by-step approach and worked example →</span></a>
+    <a href="/jee-maths-revision.html"><strong>Make revision stick</strong><span>Use recall, error logs and mock-test analysis →</span></a>
+    <a href="/quadratic-equations-guide.html"><strong>Quadratic equations</strong><span>Explore roots and worked examples →</span></a>
+    <a href="/limits-and-derivatives-guide.html"><strong>Limits and derivatives</strong><span>Build your calculus foundation →</span></a>
+    <a href="/study-toolkit.html"><strong>Study toolkit</strong><span>Make a weekly plan and checklist →</span></a>
+  </div>
+  <a class="guide-cta" href="/study-guides.html">Explore all study guides →</a>
+</section>
 <hr class="divider" />
 
 <!-- SEARCH TAGS (SEO) -->
@@ -963,11 +1015,14 @@
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <p>This is an <strong>informational biography page</strong> about Sachin Jakhar, JEE Mathematics Faculty at Physics Wallah.<br />
   Not officially affiliated with Physics Wallah Pvt. Ltd. All information sourced from publicly available data.</p>
   <p style="margin-top:12px;">© 2025 · Sachin Jakhar Sir Profile</p>
+  <div class="footer-links"><a href="/study-guides.html">Study guides</a><a href="/study-toolkit.html">Toolkit</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy-policy.html">Privacy policy</a><a href="/terms.html">Terms</a></div>
 </footer>
 
 <script>
@@ -975,16 +1030,18 @@
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded', 'false'); });
+    if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
   }
 
   // Scroll Reveal
   const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
   }, { threshold: 0.12 });
   revealEls.forEach(el => observer.observe(el));
+  }
 </script>
 </body>
 </html>
